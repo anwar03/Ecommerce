@@ -5,7 +5,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from base.constants import ENGLISH, PREFERRED_LANGUAGE, TIMEZONE_CHOICES
+from base.constants import TIMEZONE_CHOICES, USER_TYPE, BUYER
 
 
 class UserManagerEx(UserManager):
@@ -30,16 +30,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     username = models.EmailField(verbose_name=_('username'), max_length=100, unique=True)
     first_name = models.CharField(verbose_name=_('first name'), max_length=100, null=True, blank=True)
     last_name = models.CharField(verbose_name=_('last name'), max_length=100, null=True, blank=True)
-    image = models.ImageField(verbose_name=_('image'), upload_to='user/', null=True, blank=True)
+    user_type = models.CharField( verbose_name=_('status'), max_length=30, choices=USER_TYPE, default=BUYER)
     contact = models.ForeignKey('contact.Contact', verbose_name=_('contact'), related_name='users',
                                 on_delete=models.SET_NULL, null=True, blank=True)
     is_staff = models.BooleanField(verbose_name=_('staff status'), default=False)
     is_active = models.BooleanField(verbose_name=_('active'), default=True)
     date_joined = models.DateTimeField(verbose_name=_('date joined'), default=timezone.now)
-    language = models.CharField(verbose_name=_('language'), max_length=3, choices=PREFERRED_LANGUAGE, default=ENGLISH)
-    timezone = models.CharField(verbose_name=_('timezone'), max_length=100, choices=TIMEZONE_CHOICES,
-                                default='Asia/Dhaka')
-
+    
+    
     objects = UserManagerEx()
 
     USERNAME_FIELD = 'username'

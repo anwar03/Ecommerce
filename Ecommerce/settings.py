@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Custom user model
+AUTH_USER_MODEL = 'user.User'
+
 
 # Application definition
 
@@ -37,6 +40,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+
+    # User define app
+    'user',
+    'base',
+    'company',
+    'contact',
+    'product',
+    'invoice',
+    
 ]
 
 MIDDLEWARE = [
@@ -75,8 +88,12 @@ WSGI_APPLICATION = 'Ecommerce.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'ecommerce_db',
+        'USER': 'ecommerce_user',
+        'PASSWORD': 'bangbang',
+        'HOST': 'localhost',
+        'PORT': ''
     }
 }
 
@@ -117,4 +134,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
+
+HOME_DIR = os.path.realpath(os.path.join(BASE_DIR, '..'))
+
+
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+os.path.join(BASE_DIR, 'staticfiles'),
+]
+
+# media file configuration
+
+MEDIA_URL = os.path.join(HOME_DIR, 'media/')
+
+MEDIA_ROOT = os.path.join(HOME_DIR, 'media/')

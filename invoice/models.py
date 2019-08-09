@@ -1,17 +1,15 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from product.models import Product
-from user.models import User
 from base.models import BaseModel
 from base.constants import STATUS_CHOICE, PENDING
 
 class Invoice(BaseModel):
-    product = models.ForeignKey(to='Product', verbose_name=_('Product'), related_name='product',
+    product = models.ForeignKey(to='product.Product', verbose_name=_('Product'), related_name='invoices',
                                     on_delete=models.CASCADE, null=True, blank=True)
-    seller = models.ForeignKey(to='User', verbose_name=_('Seller'), related_name='seller',
+    seller = models.ForeignKey(to='user.User', verbose_name=_('Seller'), related_name='seller',
                                     on_delete=models.CASCADE, null=True, blank=True)
-    buyer = models.ForeignKey(to='User', verbose_name=_('Buyer'), related_name='buyer',
+    buyer = models.ForeignKey(to='user.User', verbose_name=_('Buyer'), related_name='buyer',
                                     on_delete=models.CASCADE, null=True, blank=True)
     amount_of_quantities = models.PositiveIntegerField(verbose_name=_('Amount of quantities'), default=0,
                                     null=True, blank=True)
