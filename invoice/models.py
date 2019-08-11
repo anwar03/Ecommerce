@@ -13,5 +13,6 @@ class Invoice(BaseModel):
                                     on_delete=models.CASCADE, null=True, blank=True)
     amount_of_quantities = models.PositiveIntegerField(verbose_name=_('Amount of quantities'), default=0,
                                     null=True, blank=True)
+    unit_price = models.DecimalField(verbose_name=_('Unit price'),  max_digits=10, decimal_places=2, null=True, blank=True)
     cost = models.DecimalField(verbose_name=_('Cost'),  max_digits=10, decimal_places=2, null=True, blank=True)
     status = models.CharField( verbose_name=_('status'), max_length=30, choices=STATUS_CHOICE, default=PENDING)

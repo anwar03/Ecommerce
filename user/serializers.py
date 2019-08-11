@@ -18,3 +18,9 @@ class UserRegistrationSerializer(ModelSerializer):
                 'style': {'input_type': 'password'},
             }
         }
+        
+class ProfileSerializer(ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'first_name', 'last_name', 'user_type']
