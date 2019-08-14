@@ -1,5 +1,8 @@
 from rest_framework import generics
+from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+from rest_framework.response import Response
 
 from .serializers import AddInvoiceSerializer, InvoiceSerializer
 from base.permissions import IsOwner
@@ -30,5 +33,19 @@ class OrderListApiView(generics.ListAPIView):
         
         return Invoice.objects.none()
 
-# class OrderApiView(generics.CreateAPIView):
-    
+
+class OrderApiView(APIView):
+    permission_classes = ( IsAuthenticated, )
+    def get(self, request):
+        user_id = self.request.user.id
+        
+        # invoice= Invoice.objects.filter(buyer=user_id, status='pending').update(status='paid')
+        invoice_list = Invoice.objects.filter(buyer=user_id, status='pending')
+        if invoice_list.exists():
+            invoice= Invoice.objects.filter(buyer=user_id, status='pending').update(status='paid')
+            print(invoice)
+            return Response({"message": "invoice update done."}, status=status.HTTP_200_OK)
+        else:
+            return Response({"message": "Produce are not available."}, status=status.HTTP_200_OK)
+
+        

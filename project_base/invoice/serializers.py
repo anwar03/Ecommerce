@@ -8,14 +8,14 @@ class AddInvoiceSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Invoice
-        fields = ['product', 'seller', 'amount_of_quantities', 'cost']
-        read_only_fields = ('cost', )
+        fields = ['id','product', 'seller', 'amount_of_quantities', 'cost']
+        read_only_fields = ('cost', 'id')
     
     
     def validate(self, data):
         amount_of_quantities = data['amount_of_quantities']
-        product_id = data['product']    
-        product = Product.objects.get(name=product_id)
+        product = data['product']
+        product = Product.objects.get(id=product.id)
         product_price = product.unit_price
         cost = product_price * amount_of_quantities
         data['cost'] = cost
