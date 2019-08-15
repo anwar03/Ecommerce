@@ -134,7 +134,10 @@ target/
 
 db.sqlite3
 db.py
-media/*
+#media/*
+
+client/node_modules
+
 desktop.ini
 .DS_Store
 # venv
