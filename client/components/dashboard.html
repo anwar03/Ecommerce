@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product list</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified CSS -->
+
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<style type="text/css">
+	.product-list{
+		border: 1px solid #eaeaea;
+	    padding: 5px;
+	    margin: 5px;
+	}
+	.product-img{
+		height: 120px;
+    	width: 120px;
+	}
+</style>
+
+</head>
+<body>
+	<div class="container">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				    <span class="sr-only">Toggle navigation</span>
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+				  </button>
+				  <a class="navbar-brand" href="#">E-commerce</a>
+				</div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				  <ul class="nav navbar-nav navbar-right">
+				  	 <li ng-if="false"><button ng-click="goToLogin()">SignIn</button></li>
+				  	 <li ng-if="false"><button ng-click="register()">SignUp</button></li>
+				  	 <li ng-if="true"><button ng-click="logout()">Logout</button></li>
+				  </ul>
+				</div>
+			</div>
+		</nav>
+
+		<div id="userContent" data-ng-init="getProduct()">
+			<div ng-repeat="product in products">
+				<div class="row product-list">
+					<div class="col-md-2">
+						<img src="{{product.image}}" class="img-responsive product-img" >
+					</div>
+					<div class="col-md-10">
+						<h3>{{ product.name }}</h3>
+						<h5><strong>Price : </strong>{{ product.unit_price }}</h5>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	
+</body>
+</html>
+

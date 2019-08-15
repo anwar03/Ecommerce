@@ -28,7 +28,7 @@ class ProductListApiViewForAll(generics.ListAPIView):
         return Product.objects.all()
 
 class ProductDetailsApiView(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = ( IsAuthenticated, IsOwner, )
+    permission_classes = ( AllowAny, )
     serializer_class = ProductSerializer
     
     def get_queryset(self):
