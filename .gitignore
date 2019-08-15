@@ -136,6 +136,8 @@ db.sqlite3
 db.py
 #media/*
 
+venv/
+
 client/node_modules
 
 desktop.ini
