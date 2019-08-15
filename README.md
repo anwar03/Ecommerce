@@ -22,7 +22,9 @@ pip install -r requirements.txt
 ```
 npm install
 ```
-
+```
+npm run dev
+```
 7. Migrate 
 ```
 python manage.py migrate
